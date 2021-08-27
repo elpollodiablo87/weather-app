@@ -28,11 +28,12 @@ app.get('/getData', (req, res) =>{
 
 //Post route
 
-app.post('/postDate', (req, res) => {
+app.post('/postData', (req, res) => {
     //posting the three variables from app.js
     projectData.temperature = req.body.temperature;
     projectData.date = req.body.date;
     projectData.userMood = req.body.userMood;
     //Ending the response
     res.end()
+    console.log(projectData);
 })
