@@ -41,20 +41,22 @@ const getData = async () => {
 
 const updateUI = (data) => {
     document.getElementById('date').innerText = date;
-    document.getElementById('temp').innerText = 'temp';
-    document.getElementById('content').innerText = 'content';
+    document.getElementById('temp').innerText = data.temperature;
+    document.getElementById('content').innerText = data.userMood;
 }
 
-// Event listener to add function to existing HTML DOM element
+// Event listener 
 document.getElementById('generate').addEventListener('click', async () => {
     const zip = document.getElementById('zip').value;
     const userMood = document.getElementById('feelings').value;
     gettingData(zip).then((result)=> {
         postData('/postData', {temperature: result, userMood, date})
     }).then(() => {
-        getData()
-    }).then(() => {
-        updateUI()
+        return getData()
+    }).then((data) => {
+        updateUI(data)
+    }).catch((err) => {
+        console.log('Error: ', err);
     })
 })
     
