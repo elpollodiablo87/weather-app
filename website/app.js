@@ -1,5 +1,5 @@
 // Personal API Key for OpenWeatherMap API
-const key = 'a055dfbf06ba783119b20ef52f8bf6fb';
+const key = 'a055dfbf06ba783119b20ef52f8bf6fb&units=metric';
 // The API link
 const api = `api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${key}`;
 
@@ -9,7 +9,7 @@ const date = new Date();
 
 /* Function to GET Web API Data*/
 const gettingData = async (zip) => {
-    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=a055dfbf06ba783119b20ef52f8bf6fb`);
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${key}`);
     const result = await response.json();
     console.log(result.main.temp);
     return result.main.temp;
@@ -40,9 +40,9 @@ const getData = async () => {
 //UI update function
 
 const updateUI = (data) => {
-    document.getElementById('date').innerText = date;
-    document.getElementById('temp').innerText = data.temperature;
-    document.getElementById('content').innerText = data.userMood;
+    document.getElementById('date').innerHTML = date;
+    document.getElementById('temp').innerHTML = data.temperature;
+    document.getElementById('content').innerHTML = data.userMood;
 }
 
 // Event listener 
